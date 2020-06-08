@@ -11,7 +11,7 @@ class GridQuestionario extends StatefulWidget {
   Widget widgetOpcaoB;
   Widget widgetOpcaoC;
   Widget widgetOpcaoD;
-  AssetImage questao;
+  NetworkImage questao;
   bool opcaoA;
   bool opcaoB;
   bool opcaoC;
@@ -25,7 +25,7 @@ class GridQuestionario extends StatefulWidget {
     if(widgetOpcaoB == null){widgetOpcaoB = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoC == null){widgetOpcaoC = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoD == null){widgetOpcaoD = Image.asset('assets/jjj.bmp');}
-    if(questao == null){questao = AssetImage('assets/jjj.bmp');}
+    if(questao == null){questao = NetworkImage('https://firebasestorage.googleapis.com/v0/b/minervashort.appspot.com/o/questoes_anato%2Fquestoes_sist_resp%2Fjjj.bmp?alt=media&token=52cf43e3-47b4-4020-a1af-051d70450bbe');}
     if(borderRadius == null){borderRadius = BorderRadius.zero;}
   }
 

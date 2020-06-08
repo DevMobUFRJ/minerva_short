@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "213786165306",
+    "firebase_url": "https://minervashort.firebaseio.com",
+    "project_id": "minervashort",
+    "storage_bucket": "minervashort.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213786165306:android:a05919f4bc08982ea33503",
+        "android_client_info": {
+          "package_name": "com.example.minervaShort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213786165306-gbt4tc69ju6k71cn46l44sk7287ao052.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-04XFm6x3aQz1kobjUyET-zsNLYQbs8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213786165306-gbt4tc69ju6k71cn46l44sk7287ao052.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,15 +11,16 @@ class TelaQuestionarioAle extends StatefulWidget {
 
 class _TelaQuestionarioAleState extends State<TelaQuestionarioAle> {
 
-  final array = new Array();
 
-  chama_array(){
-    return array.aleatorio();
-  }
 
 
   @override
   Widget build(BuildContext context) {
+    final array = new Array();
+
+    chama_array(){
+      return array.aleatorio();
+    }
 
 
     return chama_array();

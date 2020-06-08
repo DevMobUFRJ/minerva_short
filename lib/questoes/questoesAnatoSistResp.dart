@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:minervaShort/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:minervaShort/widgets/gridQuestionario.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Alternativa extends StatelessWidget {
   String caminho;
@@ -19,90 +21,39 @@ class Alternativa extends StatelessWidget {
 }
 
 
-class Array{
-  List<GridQuestionario> questoes = List();
+class Array {
+  //List<GridQuestionario> questoes = List();
   final _random = new Random();
-  static int i = 0;
+  static int j = 0;
 
-  aleatorio(){
-    globals.pontoAle++;
 
-    i++;
-    int cont = _random.nextInt(questoes.length);
+  bd(DocumentSnapshot document) {
+    return GridQuestionario(
+      questao: NetworkImage(document['questao']),
+      widgetOpcaoA: document['tipo'] == 'texto'?Text('${document['alternativa_a']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_a']}'): Text('Tipo da alternativa não informado'),
+      widgetOpcaoB: document['tipo'] == 'texto'?Text('${document['alternativa_b']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_b']}'): Text('Tipo da alternativa não informado'),
+      widgetOpcaoC: document['tipo'] == 'texto'?Text('${document['alternativa_c']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_c']}'): Text('Tipo da alternativa não informado'),
+      widgetOpcaoD: document['tipo'] == 'texto'?Text('${document['alternativa_d']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_d']}'): Text('Tipo da alternativa não informado'),
+      opcaoA: document['correto'] == 'a'?  true : false,
+      opcaoB: document['correto'] == 'b'?  true : false,
+      opcaoC: document['correto'] == 'c'?  true : false,
+      opcaoD: document['correto'] == 'd'?  true : false,
 
-    return questoes[cont];
-
+    );
   }
 
-  Array(){
-    questoes.add(
-        GridQuestionario(
-          questao: AssetImage('questoes_anato/questoes_sistema_resp/Quest_1.jpg'),
-          widgetOpcaoA: Text(
-              'I- Narina\n'
-                  'II- Cavidade Nasal\n'
-                  'III- Faringe\n'
-                  'IV- Laringe\n'
-                  'V- Epiglote'
-          ),
-          widgetOpcaoB: Text(
-              'I- Narina\n'
-                  'II- Epiglote\n'
-                  'III- Laringe\n'
-                  'IV- Faringe\n'
-                  'V- Cavidade Nasal'
-          ),
-          widgetOpcaoC: Text(
-              'I- Cavidade Nasal\n'
-                  'II- Narina\n'
-                  'III- Laringe\n'
-                  'IV- Faringe\n'
-                  'V- Epiglote'
-          ),
-          widgetOpcaoD: Text(
-              'I- Cavidade Nasal\n'
-                  'II- Narina\n'
-                  'III- Faringe\n'
-                  'IV- Epiglote\n'
-                  'V- Laringe'
-          ),
-          opcaoD: true,
-        )
-    );
+  aleatorio() {
+    globals.pontoAle++;
+    j++;
 
-    questoes.add(
-        GridQuestionario(
-          questao: AssetImage('questoes_anato/questoes_sistema_resp/Quest_2.jpg'),
-          widgetOpcaoA: Text(
-              'I- Diafragma\n'
-                  'II- Cavidade pleural\n'
-                  'III- Bronquios Primarios\n'
-                  'IV- Pulmão\n'
-                  'V- Bronquios secondarios'
-          ),
-          widgetOpcaoB: Text(
-              'I- Traqueia\n'
-                  'II- Cavidade pleural\n'
-                  'III- Diafragma\n'
-                  'IV- Pulmão\n'
-                  'V- Bronquios primarios'
-          ),
-          widgetOpcaoC: Text(
-              'I- Traqueia\n'
-                  'II- Bronquios primarios\n'
-                  'III- Cavidade pleural\n'
-                  'IV- Pulmão\n'
-                  'V- Pulmão'
-          ),
-          widgetOpcaoD: Text(
-              'I- Traqueia\n'
-                  'II- Bronquios primarios\n'
-                  'III- Diafragma\n'
-                  'IV- Pulmão\n'
-                  'V- Pulmão'
-          ),
-          opcaoC: true,
-        )
+
+    return StreamBuilder(
+      stream: Firestore.instance.collection('questoes_sist_resp').snapshots(),
+      builder: (context, snapshot){
+        if(!snapshot.hasData) return CircularProgressIndicator();
+        int cont = _random.nextInt(snapshot.data.documents.length);
+        return bd(snapshot.data.documents[cont]);
+      }
     );
   }
 }
