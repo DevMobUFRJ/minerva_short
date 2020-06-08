@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:minervaShort/botoes/botaoQuestionario.dart';
 import 'package:provider/provider.dart';
 import 'package:minervaShort/globals.dart' as globals;
-
 import '../clickChangeNotifier.dart';
 import 'base.dart';
 
@@ -17,6 +16,8 @@ class GridQuestionario extends StatefulWidget {
   bool opcaoC;
   bool opcaoD;
   BorderRadius borderRadius;
+
+
 
 
 

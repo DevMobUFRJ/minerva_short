@@ -50,7 +50,7 @@ class Array {
     return StreamBuilder(
       stream: Firestore.instance.collection('questoes_sist_resp').snapshots(),
       builder: (context, snapshot){
-        if(!snapshot.hasData) return CircularProgressIndicator();
+        if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
         int cont = _random.nextInt(snapshot.data.documents.length);
         return bd(snapshot.data.documents[cont]);
       }
