@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:minervaShort/botoes/botaoQuestionario.dart';
 import 'package:provider/provider.dart';
@@ -10,23 +11,19 @@ class GridQuestionario extends StatefulWidget {
   Widget widgetOpcaoB;
   Widget widgetOpcaoC;
   Widget widgetOpcaoD;
-  NetworkImage questao;
+  CachedNetworkImage questao;
   bool opcaoA;
   bool opcaoB;
   bool opcaoC;
   bool opcaoD;
   BorderRadius borderRadius;
 
-
-
-
-
   GridQuestionario({this.borderRadius,this.questao, this.widgetOpcaoA,this.widgetOpcaoB, this.widgetOpcaoC, this.widgetOpcaoD, this.opcaoA,this.opcaoB, this.opcaoC, this.opcaoD}){
     if(widgetOpcaoA == null){widgetOpcaoA = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoB == null){widgetOpcaoB = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoC == null){widgetOpcaoC = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoD == null){widgetOpcaoD = Image.asset('assets/jjj.bmp');}
-    if(questao == null){questao = NetworkImage('https://firebasestorage.googleapis.com/v0/b/minervashort.appspot.com/o/questoes_anato%2Fquestoes_sist_resp%2Fjjj.bmp?alt=media&token=52cf43e3-47b4-4020-a1af-051d70450bbe');}
+    if(questao == null){questao = CachedNetworkImage(imageUrl: 'https://firebasestorage.googleapis.com/v0/b/minervashort.appspot.com/o/questoes_anato%2Fquestoes_sist_resp%2Fjjj.bmp?alt=media&token=52cf43e3-47b4-4020-a1af-051d70450bbe');}
     if(borderRadius == null){borderRadius = BorderRadius.zero;}
   }
 
@@ -45,9 +42,7 @@ class _GridQuestionarioState extends State<GridQuestionario> {
       widget: ListView(
 
         children: <Widget>[
-          Image(
-            image: widget.questao,
-          ),
+          widget.questao,
 
           ButtonBar(
             buttonPadding: EdgeInsets.all(8),

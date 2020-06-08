@@ -1,9 +1,9 @@
-import 'dart:async';
 import 'dart:math';
 import 'package:minervaShort/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:minervaShort/widgets/gridQuestionario.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Alternativa extends StatelessWidget {
   String caminho;
@@ -27,9 +27,14 @@ class Array {
   static int j = 0;
 
 
+
+
   bd(DocumentSnapshot document) {
     return GridQuestionario(
-      questao: NetworkImage(document['questao']),
+      questao: CachedNetworkImage(
+        imageUrl: document['questao'],
+        placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
+      ),
       widgetOpcaoA: document['tipo'] == 'texto'?Text('${document['alternativa_a']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_a']}'): Text('Tipo da alternativa não informado'),
       widgetOpcaoB: document['tipo'] == 'texto'?Text('${document['alternativa_b']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_b']}'): Text('Tipo da alternativa não informado'),
       widgetOpcaoC: document['tipo'] == 'texto'?Text('${document['alternativa_c']}') : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_c']}'): Text('Tipo da alternativa não informado'),
