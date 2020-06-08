@@ -23,7 +23,7 @@ class GridQuestionario extends StatefulWidget {
     if(widgetOpcaoB == null){widgetOpcaoB = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoC == null){widgetOpcaoC = Image.asset('assets/jjj.bmp');}
     if(widgetOpcaoD == null){widgetOpcaoD = Image.asset('assets/jjj.bmp');}
-    if(questao == null){questao = CachedNetworkImage(imageUrl: 'https://firebasestorage.googleapis.com/v0/b/minervashort.appspot.com/o/questoes_anato%2Fquestoes_sist_resp%2Fjjj.bmp?alt=media&token=52cf43e3-47b4-4020-a1af-051d70450bbe');}
+    if(questao == null){questao = CachedNetworkImage(imageUrl: 'https://drive.google.com/file/d/1qkIB8A9N3bkGV3eHKeGA0MK1DrOcvRBr/view');}
     if(borderRadius == null){borderRadius = BorderRadius.zero;}
   }
 
