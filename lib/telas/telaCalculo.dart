@@ -24,12 +24,7 @@ class TelaCalculo extends StatelessWidget{
             proximaTela: TelaQuestionario(
               tituloAppBar: Text('Integral'),
               telaTeoria: TelaTeoria(
-                <TextoTeoria>[
-                  TextoTeoria(
-                    titulo: 'Integral',
-                    descricao: 'É o inverso da derivada, dessa forma, ao ver integral de *alguma coisa*, deve-se pensar qual a função cuja derivada seja essa *alguma coisa*',
-                  ),
-                ],
+
               ),
             ),
           ),

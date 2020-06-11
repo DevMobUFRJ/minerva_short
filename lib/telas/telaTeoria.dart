@@ -1,5 +1,6 @@
 // tela na qual fica a teoria
 import 'package:flutter/material.dart';
+import 'package:minervaShort/botoes/botaoListTile.dart';
 import 'package:minervaShort/widgets/base.dart';
 import 'package:minervaShort/widgets/textoTeoria.dart';
 
@@ -11,19 +12,18 @@ class TelaTeoria extends StatelessWidget{
   String url;
   FloatingActionButton botaoFlutuante;
 
-  TelaTeoria(this.textos, {this.url, this.botaoFlutuante});
-
-
-
+  TelaTeoria({this.textos, this.url, this.botaoFlutuante});
   @override
   Widget build(BuildContext context) {
-
     return Base(
-      tituloAppBar: Text('Teoria'),
-      widget: Column(
-        children: textos,
+      tituloAppBar: Text('Teorias'),
+      widget: ListView(
+        children: <Widget>[
+          BotaoListTile(titulo: 'Anatomia',),
+          Divider(height: 2,),
+          BotaoListTile(titulo: 'Embriologia',),
+        ],
       ),
-      floatingActionButton: botaoFlutuante,
     );
   }
 }

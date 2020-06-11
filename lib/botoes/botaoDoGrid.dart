@@ -1,7 +1,7 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter/cupertino.dart';
 import '../clickChangeNotifier.dart';
 import 'package:minervaShort/globals.dart' as globals;
 
@@ -9,9 +9,11 @@ class BotaoDoGrid extends StatelessWidget{
 
   final String nome;
   String caminhoImagem;
-  final Widget proximaTela;
 
-  BotaoDoGrid({this.nome, this.proximaTela, this.caminhoImagem});
+  final Widget proximaTela;
+  Widget filho;
+
+  BotaoDoGrid({this.nome, this.proximaTela, this.caminhoImagem,});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class BotaoDoGrid extends StatelessWidget{
           else{
             globals.EmBreveFlushBar(context);
           }
+
         },
         child: SizedBox(
           width: 150,
