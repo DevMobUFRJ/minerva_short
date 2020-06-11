@@ -27,7 +27,13 @@ class Array {
   static int j = 0;
 
 
+  tipoOpcao(DocumentSnapshot document){
+    return document['tipo'] == 'texto'?Text('${document['alternativa_a']}', style: TextStyle(fontSize: 12.0, color: Colors.black),) : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_a']}'): Text('Tipo da alternativa não informado',);
+  }
 
+  bool correto(DocumentSnapshot document, String alternativa){
+    return document['correto'] == '$alternativa'?  true : false;
+  }
 
   bd(DocumentSnapshot document) {
     return GridQuestionario(
@@ -35,14 +41,14 @@ class Array {
         imageUrl: document['questao'],
         placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
       ),
-      widgetOpcaoA: document['tipo'] == 'texto'?Text('${document['alternativa_a']}', style: TextStyle(fontSize: 12.0),) : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_a']}'): Text('Tipo da alternativa não informado',),
-      widgetOpcaoB: document['tipo'] == 'texto'?Text('${document['alternativa_b']}', style: TextStyle(fontSize: 12.0),) : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_b']}'): Text('Tipo da alternativa não informado'),
-      widgetOpcaoC: document['tipo'] == 'texto'?Text('${document['alternativa_c']}', style: TextStyle(fontSize: 12.0),) : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_c']}'): Text('Tipo da alternativa não informado'),
-      widgetOpcaoD: document['tipo'] == 'texto'?Text('${document['alternativa_d']}', style: TextStyle(fontSize: 12.0),) : document['tipo'] == 'imagem'? NetworkImage('${document['alternativa_d']}'): Text('Tipo da alternativa não informado'),
-      opcaoA: document['correto'] == 'a'?  true : false,
-      opcaoB: document['correto'] == 'b'?  true : false,
-      opcaoC: document['correto'] == 'c'?  true : false,
-      opcaoD: document['correto'] == 'd'?  true : false,
+      widgetOpcaoA: tipoOpcao(document),
+      widgetOpcaoB: tipoOpcao(document),
+      widgetOpcaoC: tipoOpcao(document),
+      widgetOpcaoD: tipoOpcao(document),
+      opcaoA: correto(document, 'a'),
+      opcaoB: correto(document, 'b'),
+      opcaoC: correto(document, 'c'),
+      opcaoD: correto(document, 'd'),
 
     );
   }

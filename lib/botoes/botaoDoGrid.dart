@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,11 +32,15 @@ class BotaoDoGrid extends StatelessWidget{
                 )
             );
           }
+          else{
+            globals.EmBreveFlushBar(context);
+          }
         },
         child: SizedBox(
           width: 150,
           height: 200,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
@@ -44,7 +49,7 @@ class BotaoDoGrid extends StatelessWidget{
                   fit: BoxFit.fill,
                 ),
               ),
-              Text('$nome', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white))
+              Text('$nome', textAlign: TextAlign.center, )
             ],
           ),
         ),

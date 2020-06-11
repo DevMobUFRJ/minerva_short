@@ -19,7 +19,7 @@ class BotaoQuestionario extends StatefulWidget {
 }
 
 class _BotaoQuestionarioState extends State<BotaoQuestionario> {
-  Color cor = Colors.white;
+
 
 
 
@@ -50,23 +50,17 @@ class _BotaoQuestionarioState extends State<BotaoQuestionario> {
             return RaisedButton(
               color: Colors.transparent,
               onPressed: (){
-
                 Navigator.of(context).pop();
                 trocaTela();
-
               },
               child: AlertDialog(
                 content: Icon(Icons.check, color: Colors.green, size: 64,),
                 shape: CircleBorder(),
-
-
               ),
             );
           }
       );
     }
-
-
     else{
       showDialog(
           barrierDismissible: false,
@@ -77,7 +71,6 @@ class _BotaoQuestionarioState extends State<BotaoQuestionario> {
               onPressed: (){
                 Navigator.of(context).pop();
               },
-
               child: AlertDialog(
                 content: Icon(Icons.clear, color: Colors.red, size: 64,),
                 shape: CircleBorder(),
@@ -92,6 +85,7 @@ class _BotaoQuestionarioState extends State<BotaoQuestionario> {
 
   @override
   Widget build(BuildContext context) {
+    Color cor = Theme.of(context).primaryColor;
     var info = Provider.of<Info>(context);
     return FlatButton(
       onPressed: (){

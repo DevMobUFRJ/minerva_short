@@ -10,42 +10,35 @@ class CardBotao extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.blueGrey[600],
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: RaisedButton(
+    return GestureDetector(
+      onTap: (){
+        if(proximaTela!=null){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context){
+                  return proximaTela;
+                }
+            )
+          );
+        }
+      },
+
+      child: Card(
+        //color: Theme.of(context).accentColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        color: Colors.blueGrey[600],
-        onPressed: (){
-          if(proximaTela!=null){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context){
-                      return proximaTela;
-                    }
-                )
-            );
-          }
-        },
         child: ListTile(
           title: Text('$titulo',
             style: TextStyle(
-              color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
-          subtitle: Text('$subtitulo',
-            style: TextStyle(color: Colors.white
-            ),
+          subtitle: Text('$subtitulo'),
           ),
         ),
-      ),
-    );
+      );
   }
 }
 

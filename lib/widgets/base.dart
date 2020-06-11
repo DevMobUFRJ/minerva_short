@@ -1,5 +1,8 @@
 //Base de todas as telas que serão criadas
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../clickChangeNotifier.dart';
 
 class Base extends StatefulWidget{
   final Widget widget;
@@ -16,16 +19,15 @@ class _BaseState extends State<Base> {
 
   @override
   Widget build(BuildContext context) {
+    var info = Provider.of<Info>(context);
     return Scaffold(
-      //backgroundColor: Colors.black,
+
       appBar: AppBar(
         leading: widget.leading,
         title: widget.tituloAppBar,
         //backgroundColor: Colors.deepPurple.shade600,
       ),
-      body: Center(
-        child: widget.widget,
-      ),
+      body: widget.widget,
       floatingActionButton: widget.floatingActionButton,
     );
   }

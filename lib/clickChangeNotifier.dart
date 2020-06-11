@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
-
+import 'package:flutter/material.dart';
 
 class Info with ChangeNotifier{
+
 
   int _click = 0;
 
