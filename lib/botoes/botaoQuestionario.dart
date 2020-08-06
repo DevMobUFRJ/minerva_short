@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:minervaShort/telas/telaHome.dart';
 import 'package:minervaShort/telas/telaQuestionarioAle.dart';
+import 'package:minervaShort/telas/telaTeste.dart';
 import 'package:provider/provider.dart';
-
+import 'package:minervaShort/globals.dart' as globals;
 import '../clickChangeNotifier.dart';
 
 class BotaoQuestionario extends StatefulWidget {
@@ -9,6 +11,7 @@ class BotaoQuestionario extends StatefulWidget {
   Widget widget;
   final String opcao;
   BorderRadius borderRadius = BorderRadius.zero;
+  Widget proximaTela;
 
   BotaoQuestionario({@required this.opcao,@required this.widget, this.certo, this.borderRadius}){
     if(borderRadius == null){borderRadius = BorderRadius.zero;}
@@ -19,104 +22,88 @@ class BotaoQuestionario extends StatefulWidget {
 }
 
 class _BotaoQuestionarioState extends State<BotaoQuestionario> {
+  Color cor = Colors.black;
 
 
 
-
-  bool trocaTela(){
-
+  void trocaTela(){
+    debugPrint('TROCA');
     Navigator.pop(context);
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context){
-              return TelaQuestionarioAle();
+              return new TelaTeste();
             }
         )
     );
-
-
-    return true;
-
   }
-
-  criaPopUp(bool certo){
-
-    if(widget.certo){
-      showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (context){
-            return RaisedButton(
-              color: Colors.transparent,
-              onPressed: (){
-                Navigator.of(context).pop();
-                trocaTela();
-              },
-              child: AlertDialog(
-                content: Icon(Icons.check, color: Colors.green, size: 64,),
-                shape: CircleBorder(),
-              ),
-            );
-          }
-      );
-    }
-    else{
-      showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (context){
-            return RaisedButton(
-              color: Colors.transparent,
-              onPressed: (){
-                Navigator.of(context).pop();
-              },
-              child: AlertDialog(
-                content: Icon(Icons.clear, color: Colors.red, size: 64,),
-                shape: CircleBorder(),
-              ),
-            );
-          }
-      );
-    }
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
-    Color cor = Theme.of(context).primaryColor;
     var info = Provider.of<Info>(context);
+
+    criaPopUp(bool certo){
+
+      if(widget.certo){
+        info.incrementClick();
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context){
+              return RaisedButton(
+                child: AlertDialog(
+                  content: Icon(Icons.check, color: Colors.green, size: 64,),
+                  shape: CircleBorder(),
+                ),
+                color: Colors.transparent,
+                onPressed: (){
+
+                  Navigator.of(context).pop();
+
+                  trocaTela();
+
+                },
+              );
+            }
+        );
+      }
+      else{
+        info.decrementClick();
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context){
+              return RaisedButton(
+
+                child: AlertDialog(
+                  content: Icon(Icons.clear, color: Colors.red, size: 64,),
+                  shape: CircleBorder(),
+                ),
+                color: Colors.transparent,
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+              );
+            }
+        );
+      }
+    }
+
     return FlatButton(
       onPressed: (){
+        debugPrint('BUILD');
         if(widget.certo == null){widget.certo = false;}
 
+        criaPopUp(widget.certo);
+        debugPrint('1');
         if(widget.certo){
-
-          info.incrementClick();
-
-          setState(() {
             cor = Colors.green;
-          });
-
-          criaPopUp(widget.certo);
-
         }
         else{
-
-          if(info.click > 0)
-          {
-            info.decrementClick();
-          }
-
-          setState(() {
             cor = Colors.red;
-          });
-          criaPopUp(widget.certo);
         }
-
-        setState(() {});
-
+        debugPrint('2');
       },
       child: SizedBox(
         width: 150,
@@ -139,4 +126,3 @@ class _BotaoQuestionarioState extends State<BotaoQuestionario> {
     );
   }
 }
-

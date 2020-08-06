@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:minervaShort/modelos/estatistica.dart';
 import 'package:minervaShort/widgets/bottomContainer.dart';
 import 'package:minervaShort/globals.dart' as globals;
 
 class BotaoDoExpansivel extends StatelessWidget {
 
-  final Widget titulo;
+  final String titulo;
   final Widget telaQuestionario;
   final Widget telaQuestionatioTempo;
   
@@ -12,8 +13,9 @@ class BotaoDoExpansivel extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+
     return ListTile(
-      title: titulo,
+      title: Text('$titulo'),
       onTap: (){
         if(telaQuestionario != null || telaQuestionatioTempo != null){
           showModalBottomSheet(

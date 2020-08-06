@@ -11,7 +11,7 @@ class BotaoListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      color: Colors.white,
+      color: Theme.of(context).canvasColor,
       child: ListTile(
         title: Text('$titulo', style: TextStyle(fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),),
       ),

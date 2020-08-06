@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minervaShort/botoes/botaoDoExpansivel.dart';
-import 'package:minervaShort/telas/telaQuestionarioAle.dart';
+import 'package:minervaShort/telas/telaTeste.dart';
 
 class ExpansivelAnatomia extends StatelessWidget {
   @override
@@ -13,26 +13,25 @@ class ExpansivelAnatomia extends StatelessWidget {
       children: <Widget>[
         Divider(color: Colors.grey[399],thickness: 1, height: 2,),
         BotaoDoExpansivel(
-          titulo: Text('Sistema articular'),
-          telaQuestionario: TelaQuestionarioAle(),
+          titulo: 'Sistema articular',
+          telaQuestionario: TelaTeste(),
         ),
         Divider(color: Colors.grey[399],thickness: 1, height: 2,),
         BotaoDoExpansivel(
-          titulo: Text('Sistema ciculatório'),
+          titulo: 'Sistema ciculatório',
         ),
         Divider(color: Colors.grey[399],thickness: 1, height: 2,),
         BotaoDoExpansivel(
-          titulo: Text('Sistema digestório'),
+          titulo: 'Sistema digestório',
         ),
         Divider(color: Colors.grey[399],thickness: 1, height: 2,),
         BotaoDoExpansivel(
-          titulo: Text('Sistema muscular'),
+          titulo: 'Sistema muscular',
         ),
         Divider(color: Colors.grey[399],thickness: 1, height: 2,),
         BotaoDoExpansivel(
-          titulo: Text('Sistema respiratório'),
+          titulo: 'Sistema respiratório',
         ),
-
       ],
     );
   }

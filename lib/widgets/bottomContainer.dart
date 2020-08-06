@@ -20,7 +20,7 @@ class BottomContainer extends StatelessWidget {
       height: 200,
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).canvasColor,
         border: Border.all(color: Theme.of(context).primaryColor, width: 2.0),
         borderRadius: BorderRadius.circular(8.0)
       ),

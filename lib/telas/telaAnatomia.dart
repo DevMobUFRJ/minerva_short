@@ -1,68 +1,51 @@
 //tela da materia anatomia
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:minervaShort/botoes/cardBotao.dart';
-import 'package:minervaShort/telas/telaQuestionario.dart';
-import 'package:minervaShort/telas/telaQuestionarioAle.dart';
-import 'package:minervaShort/widgets/base.dart';
+import 'package:minervaShort/widgets/textoTeoria.dart';
+
+import 'package:provider/provider.dart';
+import '../clickChangeNotifier.dart';
 
 class TelaAnatomia extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Base(
-      tituloAppBar: Text('Anatomia'),
-      widget: Column(
-        children: <Widget>[
-          CardBotao(
-            titulo: 'Sistema articular',
-            subtitulo: '',
-            proximaTela: TelaQuestionario(
-              tituloAppBar: Text('Sistema articular'),
-              //telaTeoria: TelaTeoria(),
-            ),
-          ),
 
-          CardBotao(
-            titulo: 'Sistema circulatório',
-            subtitulo: '',
-            proximaTela: TelaQuestionario(
-              tituloAppBar: Text('Sistema circulatório'),
-            ),
-          ),
+    criaTab(DocumentSnapshot document){
+      if(document['materia'] != null)
+        return Text(document['materia']);
+      else return Text('Materia não informada');
+    }
 
-          CardBotao(
-            titulo: 'Sistema digestório',
-            subtitulo: '',
-            proximaTela: TelaQuestionario(
-              tituloAppBar: Text('Sistema digestório'),
-            ),
-          ),
+    return StreamBuilder(
+      stream: Firestore.instance.collection('teoria_anatomia').snapshots(),
+      builder: (context, snapshot){
 
-          CardBotao(
-            titulo: 'Sistema excretor',
-            subtitulo: '',
-            proximaTela: TelaQuestionario(
-              tituloAppBar: Text('Sistema excretor'),
-            ),
-          ),
+        if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
 
-          CardBotao(
-            titulo: 'Sistema muscular',
-            subtitulo: '',
-            proximaTela: TelaQuestionario(
-              tituloAppBar: Text('Sistema muscular'),
-            ),
-          ),
+        int tamanho = snapshot.data.documents.length;
 
-          CardBotao(
-            titulo: 'Sistema respiratório',
-            subtitulo: '',
-            proximaTela: TelaQuestionario(
-              telaQuestionarioAle: TelaQuestionarioAle(),
-              tituloAppBar: Text('Sistema respiratório'),
+        return DefaultTabController(
+          length: tamanho,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('Teorias'),
+              bottom: TabBar(
+                isScrollable: true,
+                tabs: <Widget>[
+                  for(int i = 0; i < tamanho; i++)
+                    criaTab(snapshot.data.documents[i]),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: <Widget>[
+                for(int i = 0; i < tamanho; i++)
+                  TextoTeoria(document: snapshot.data.documents[i],)
+              ],
             ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
